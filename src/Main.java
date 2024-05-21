@@ -1,5 +1,9 @@
+import Management.Supplier;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Supplier proveedor = new Supplier();
+
+        proveedor.showInfo();
     }
 }
