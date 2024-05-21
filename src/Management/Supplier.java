@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Supplier extends Management{
     private static final HashMap<String, Supplier> suppliers = new HashMap<>();
-
     private String name;
     private String nit;
     private String address;
