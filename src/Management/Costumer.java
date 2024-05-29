@@ -104,9 +104,9 @@ public class Costumer extends Management{
         }
     }
 
-    public void showCostumer(String key){
-       if(costumers.containsKey(key)){
-           System.out.println(costumers.get(key));
+    public void showCostumer(String id){
+       if(costumers.containsKey(id)){
+           System.out.println(costumers.get(id));
         }else{
            System.out.println("|- El id no existe en el sistema.");
        }

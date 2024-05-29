@@ -3,6 +3,7 @@ package Management;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Scanner;
 
 public class Supplier extends Management{
     private static final HashMap<String, Supplier> suppliers = new HashMap<>();
@@ -10,6 +11,9 @@ public class Supplier extends Management{
     private String nit;
     private String address;
     private String email;
+
+    Scanner input = new Scanner(System.in);
+    Scanner numericalInput = new Scanner(System.in);
 
     // el bloque estatico permite inicializar datos
     static {
@@ -35,9 +39,47 @@ public class Supplier extends Management{
     @Override
     public void updateInfo(String key){
         if (suppliers.containsKey(key)){
-            suppliers.replace(key, new Supplier());
-            System.out.println("|- El proveedor se ha actualizado.");
-        }
+            boolean run = true;
+            while(run) {
+                System.out.println("|--------------------|");
+                System.out.println("|- Actualizar datos de: "+key);
+                System.out.println("|- ¿Qué dato desea actualizar?");
+                System.out.println("|- 1.Nombre.");
+                System.out.println("|- 2.Dirección.");
+                System.out.println("|- 3.Correo.");
+                System.out.println("|- 4. Volver.");
+                byte opcion = numericalInput.nextByte();
+
+                switch (opcion){
+                    case 1:{
+                        System.out.println("|- Digite el nuevo nombre:");
+                        String newName = input.nextLine();
+                        suppliers.get(key).setName(newName);
+                        break;
+                    }
+                    case 2:{
+                        System.out.println("|- Digite la nueva dirección:");
+                        String newAddress = input.nextLine();
+                        suppliers.get(key).setAddress(newAddress);
+                        break;
+                    }
+                    case 3:{
+                        System.out.println("|- Digite el nuevo contacto:");
+                        String newEmail = input.nextLine();
+                        suppliers.get(key).setEmail(newEmail);
+                        break;
+                    }
+                    case 4:{
+                        run = false;
+                        break;
+                    }
+                    default:{
+                        System.out.println("|- Digite un número válido.");
+                    }
+                }
+            }
+        }System.out.println("|- El id no se encuentra en el sistema.");
+
     }
 
     @Override
@@ -62,6 +104,14 @@ public class Supplier extends Management{
         for (Map.Entry<String, Supplier> entry : suppliersTreeMap.entrySet()) {
             Supplier value = entry.getValue();
             System.out.println(value);
+        }
+    }
+
+    public void showSupplier(String nit){
+        if (suppliers.containsKey(nit)){
+            System.out.println(suppliers.get(nit));
+        }else{
+            System.out.println("|- El nit no existe en el sistema.");
         }
     }
 
